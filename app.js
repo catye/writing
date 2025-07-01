@@ -18,6 +18,7 @@ let session = {
   selectedMinutes: 0,
   lastContent: '',
   pausedBecauseEmpty: false,
+  copyBtn: null,
 };
 
 // --- DOM ---
@@ -47,6 +48,7 @@ function resetUI() {
   session.timerBtns.forEach(btn => btn.classList.remove('selected'));
   session.startBtn.classList.remove('active');
   session.startBtn.textContent = 'Start';
+  session.copyBtn.style.display = 'none';
 }
 
 function startSession() {
@@ -82,6 +84,7 @@ function endSession() {
   session.downloadBtn.style.display = 'inline-block';
   session.newSessionBtn.style.display = 'inline-block';
   session.progressBar.style.width = '0%';
+  session.copyBtn.style.display = 'inline-block';
 }
 
 function tick() {
@@ -190,6 +193,21 @@ function newSession() {
   resetUI();
 }
 
+function copyToClipboard() {
+  const text = session.writingArea.innerText;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text);
+  } else {
+    // fallback for older browsers
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  }
+}
+
 // --- Init ---
 document.addEventListener('DOMContentLoaded', () => {
   session.writingArea = $('#writing-area');
@@ -198,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
   session.newSessionBtn = $('#new-session-btn');
   session.startBtn = $('#start-btn');
   session.timerBtns = $all('.timer-btn');
+  session.copyBtn = $('#copy-btn');
 
   session.timerBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -217,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   session.downloadBtn.addEventListener('click', downloadMarkdown);
   session.newSessionBtn.addEventListener('click', newSession);
+  session.copyBtn.addEventListener('click', copyToClipboard);
 
   resetUI();
 }); 
