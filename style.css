@@ -67,7 +67,7 @@ body {
   padding: 2rem;
   font-size: 1rem;
   line-height: 1.6;
-  color: rgba(245, 246, 250, 0.4);
+  color: red;
   outline: none;
   box-shadow: none;
   transition: background 0.2s;
