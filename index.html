@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focused Writing Timer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="timer-controls">
+    <button class="timer-btn" data-minutes="1">1 min</button>
+    <button class="timer-btn" data-minutes="3">3 min</button>
+    <button class="timer-btn" data-minutes="5">5 min</button>
+    <button id="start-btn">Start</button>
+  </div>
+  <div id="progress-bar-container">
+    <div id="progress-bar"></div>
+  </div>
+  <div id="writing-area" contenteditable="true" spellcheck="false"></div>
+  <div class="session-actions">
+    <button id="download-btn" style="display:none;">Download as Markdown</button>
+    <button id="new-session-btn" style="display:none;">New Session</button>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html> 

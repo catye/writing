@@ -1,0 +1,117 @@
+body {
+  background: #181a1b;
+  color: #f5f6fa;
+  font-family: 'Inter', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.timer-btn, #start-btn {
+  background: #23272a;
+  color: #b0b3b8;
+  border: none;
+  border-radius: 4px;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  opacity: 0.85;
+}
+
+.timer-btn.selected, #start-btn.active {
+  background: #36393f;
+  color: #e0e0e0;
+  opacity: 1;
+}
+
+.timer-btn:focus, #start-btn:focus {
+  outline: 2px solid #7289da;
+}
+
+#progress-bar-container {
+  width: 100vw;
+  height: 2px;
+  background: #23272a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  transition: width 0.2s linear, background 0.3s;
+}
+
+#writing-area {
+  margin-top: 3.5rem;
+  width: 90vw;
+  max-width: 900px;
+  min-height: 50vh;
+  background: transparent;
+  border-radius: 8px;
+  padding: 2rem;
+  font-size: 2rem;
+  line-height: 1.6;
+  color: #f5f6fa;
+  outline: none;
+  box-shadow: none;
+  transition: background 0.2s;
+  resize: none;
+}
+
+#writing-area.fading {
+  opacity: 0;
+  transition: opacity 5s linear;
+}
+
+.session-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+#download-btn, #new-session-btn {
+  background: #36393f;
+  color: #b0b3b8;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  opacity: 0.85;
+}
+
+#download-btn:hover, #new-session-btn:hover, .timer-btn:hover, #start-btn:hover {
+  background: #23272a;
+  color: #f5f6fa;
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  #writing-area {
+    font-size: 1.2rem;
+    padding: 1rem;
+    min-height: 40vh;
+  }
+  .timer-controls {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+} 
