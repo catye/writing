@@ -19,6 +19,7 @@ let session = {
   lastContent: '',
   pausedBecauseEmpty: false,
   copyBtn: null,
+  charCountInfo: null,
 };
 
 // --- DOM ---
@@ -49,6 +50,8 @@ function resetUI() {
   session.startBtn.classList.remove('active');
   session.startBtn.textContent = 'Start';
   session.copyBtn.style.display = 'none';
+  session.charCountInfo.style.display = 'none';
+  session.charCountInfo.textContent = '';
 }
 
 function startSession() {
@@ -85,6 +88,8 @@ function endSession() {
   session.newSessionBtn.style.display = 'inline-block';
   session.progressBar.style.width = '0%';
   session.copyBtn.style.display = 'inline-block';
+  session.charCountInfo.textContent = `Character count: ${session.writingArea.innerText.length}`;
+  session.charCountInfo.style.display = 'block';
 }
 
 function tick() {
@@ -217,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
   session.startBtn = $('#start-btn');
   session.timerBtns = $all('.timer-btn');
   session.copyBtn = $('#copy-btn');
+  session.charCountInfo = document.getElementById('char-count-info');
 
   session.timerBtns.forEach(btn => {
     btn.addEventListener('click', () => {
